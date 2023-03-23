@@ -1,11 +1,11 @@
 import random
 from matplotlib import pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, PillowWriter
 import math
 from time import time
 import numpy as np
 
-n = 3
+n = 10
 found = 0
 
 def update(i):
@@ -97,6 +97,7 @@ while found < n:
         plt.axis("off")
         scat = plt.scatter(x_list[100:], y_list[100:], s = 0.2, alpha=0.8, c = "white", linewidths=0)
 
-        ani = FuncAnimation(fig, update, frames=100, interval=100)
-        plt.show()
+        ani = FuncAnimation(fig, update, frames=20, interval=100)
+        writer = PillowWriter(fps = 10)
+        ani.save("exhibits/" + str(time()) + ".gif", writer)
 
